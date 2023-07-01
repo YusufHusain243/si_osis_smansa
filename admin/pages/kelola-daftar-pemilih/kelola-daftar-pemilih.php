@@ -52,49 +52,48 @@ if (isset($_POST['btn-reset'])) {
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12">
-                                <div>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#import">
-                                        <i class="ace-icon fa fa-plus"></i> Import Data
-                                    </button>
-    
-                                    <!-- Modal Import Data -->
-                                    <div class="modal fade" id="import">
-                                        <div class="modal-dialog">
-                                            <form action="" method="post" enctype="multipart/form-data">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">Form Input Data</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="form-group">
-                                                            <label for="file">File Input (Excel)</label>
-                                                            <div class="input-group">
-                                                                <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" id="file" name="file">
-                                                                    <label class="custom-file-label" for="file">Choose file</label>
-                                                                </div>
+                            <div class="col-6">
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#import">
+                                    <i class="ace-icon fa fa-plus"></i> Import Data
+                                </button>
+
+                                <!-- Modal Import Data -->
+                                <div class="modal fade" id="import">
+                                    <div class="modal-dialog">
+                                        <form action="" method="post" enctype="multipart/form-data">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Form Input Data</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="file">File Input (Excel)</label>
+                                                        <div class="input-group">
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input" id="file" name="file">
+                                                                <label class="custom-file-label" for="file">Choose file</label>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" name="btn-import" class="btn btn-primary">Import Data</button>
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    </div>
                                                 </div>
-                                            </form>
-                                        </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" name="btn-import" class="btn btn-primary">Import Data</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <!-- End Modal Import Data -->
-    
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#tambah">
-                                        <i class="ace-icon fa fa-plus"></i> Tambah Data
-                                    </button>
                                 </div>
-                                
+                                <!-- End Modal Import Data -->
+
+                                <button class="btn btn-success" data-toggle="modal" data-target="#tambah">
+                                    <i class="ace-icon fa fa-plus"></i> Tambah Data
+                                </button>
+                            </div>
+                            <div class="col-6">
                                 <div class="d-flex justify-content-end m-0">
                                     <!-- <div class="ml-auto d-flex flex-column"> -->
                                     <form action="" method="post">
@@ -105,8 +104,9 @@ if (isset($_POST['btn-reset'])) {
                                     <!-- </div> -->
                                 </div>
                             </div>
-
                         </div>
+
+                        <br>
 
                         <!-- Modal Tambah Data Manual -->
                         <div class="modal fade" id="tambah">
