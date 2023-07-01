@@ -20,8 +20,8 @@ function vote($conn, $data)
     if (
         cekTanggalMulai($cek_durasi[0]['tanggal_mulai'], date("Y/m/d")) &&
         cekTanggalBerakhir($cek_durasi[0]['tanggal_berakhir'], date("Y/m/d")) &&
-        cekJamMulai($cek_durasi[0]['jam_mulai'], date("h:i:s")) &&
-        cekJamBerakhir($cek_durasi[0]['jam_berakhir'], date("h:i:s"))
+        cekJamMulai($cek_durasi[0]['jam_mulai'], date("H:i:s")) &&
+        cekJamBerakhir($cek_durasi[0]['jam_berakhir'], date("H:i:s"))
     ) {
         $query = "INSERT INTO hasil_voting VALUES ('', '$idAkun', '$idKandidat')";
         if (mysqli_query($conn, $query)) {
