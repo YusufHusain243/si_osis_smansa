@@ -64,8 +64,6 @@ $kontak = showData($conn, "SELECT * FROM kontak");
       <div class="row justify-content-center">
         <div class="col-xl-8">
           <h2>Selamat Datang di Website OSIS SMA Negeri 1 Pandih Batu</h2>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta, hic deserunt placeat deleniti reprehenderit magni quo, ipsam consequuntur exercitationem libero inventore vero ratione non molestiae? Libero quisquam veniam id laudantium.</p>
-          <a href="" class="btn-get-started ">Read More</a>
         </div>
       </div>
     </div>
