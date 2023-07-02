@@ -78,7 +78,7 @@ if (isset($_POST['btn-edit'])) {
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="nav-icon fas fa-book"></i>
-                            <b>Total Pengeluaran <?= (isset($_GET['filter']) && $_GET['filter'] !== 'Semua') ? 'Tahun (' . $_GET['filter'] . ')' : '' ?></b>
+                            <b>Total Pengeluaran <?= (isset($_GET['filter']) && $_GET['filter'] !== 'Semua') ? 'Tahun ' . $_GET['filter'] . '' : '' ?></b>
                         </h3>
                     </div>
                     <!-- /.card-header -->
