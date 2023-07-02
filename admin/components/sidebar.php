@@ -137,7 +137,7 @@
                     <a href="index.php?p=kelola-ekskul&m=kelola-ekskul" class="nav-link <?= $p === 'kelola-ekskul' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Kelola Ekskul
+                            Kelola Ekstrakurikuler
                         </p>
                     </a>
                 </li>

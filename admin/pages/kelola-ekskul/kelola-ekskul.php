@@ -24,12 +24,12 @@ if (isset($_POST['btn-edit'])) {
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Kelola Ekskul</h1>
+                <h1 class="m-0">Kelola Ekstrakurikuler</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="index.php?p=dashboard&m=dashboard">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Kelola Ekskul</li>
+                    <li class="breadcrumb-item active">Kelola Ekstrakurikuler</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -49,11 +49,11 @@ if (isset($_POST['btn-edit'])) {
                     <div class="card-body">
                         <form action="" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="nama">Nama Ekskul</label>
+                                <label for="nama">Nama Ekstrakurikuler</label>
                                 <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan Nama Ekskul">
                             </div>
                             <div class="form-group">
-                                <label for="konten">Konten Ekskul</label>
+                                <label for="konten">Konten Ekstrakurikuler</label>
                                 <textarea id="summernote" name="konten"></textarea>
                             </div>
                             <button type="submit" name="btn-tambah" class="btn btn-primary">Tambah Data</button>
@@ -68,8 +68,8 @@ if (isset($_POST['btn-edit'])) {
                             <thead>
                                 <tr class="text-center">
                                     <th>No.</th>
-                                    <th>Nama Ekskul</th>
-                                    <th>Konten Ekskul</th>
+                                    <th>Nama Ekstrakurikuler</th>
+                                    <th>Konten Ekstrakurikuler</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>

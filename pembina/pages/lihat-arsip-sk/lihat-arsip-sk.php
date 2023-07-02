@@ -50,7 +50,7 @@ $data = showData($conn, "SELECT * FROM arsip_sk");
                                         <td><?= $d['judul']; ?></td>
                                         <td><?= $d['tanggal_sk']; ?></td>
                                         <td>
-                                            <a href="../pengurus/dokumen/<?= $d['dokumen']; ?>" target="_blank">Lihat Dokumen</a>
+                                            <a href="../pengurus/document/<?= $d['dokumen']; ?>" target="_blank">Lihat Dokumen</a>
                                         </td>
                                     <?php
                                 $no++;

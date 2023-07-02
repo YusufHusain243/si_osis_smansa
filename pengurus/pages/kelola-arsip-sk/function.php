@@ -115,7 +115,7 @@ function uploadDokumen()
     $namaFileBaru = uniqid();
     $namaFileBaru .= '.';
     $namaFileBaru .= $ekstensiDokumen;
-    move_uploaded_file($tmpName, 'dokumen/' . $namaFileBaru);
+    move_uploaded_file($tmpName, 'document/' . $namaFileBaru);
     return $namaFileBaru;
 }
 

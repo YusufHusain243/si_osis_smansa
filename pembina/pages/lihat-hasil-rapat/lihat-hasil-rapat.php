@@ -57,7 +57,7 @@ $data = showData($conn, "SELECT * FROM hasil_rapat");
                                             <img src="../pengurus/images/<?= $d['foto'] ?>" alt="foto" width="100px">
                                         </td>
                                         <td>
-                                            <a href="dokumen/<?= $d['file']; ?>" target="_blank">Lihat File</a>
+                                            <a href="../pengurus/document/<?= $d['file']; ?>" target="_blank">Lihat File</a>
                                         </td>
                                     <?php
                                     $no++;

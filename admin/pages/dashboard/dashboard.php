@@ -200,7 +200,7 @@ $jumlahEkskul = showData($conn, "SELECT COUNT(id) AS JumlahEkskul FROM ekskul");
                 <div class="small-box bg-danger">
                     <div class="inner">
                         <h3><?= $jumlahEkskul[0]['JumlahEkskul']; ?></h3>
-                        <p>Kelola Ekskul</p>
+                        <p>Kelola Ekstrakurikuler</p>
                     </div>
                     <div class="icon">
                         <i class="nav-icon fas fa-edit"></i>
