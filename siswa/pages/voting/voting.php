@@ -13,6 +13,7 @@ $dataKandidat = showData($conn, "SELECT
                                 INNER JOIN akun a2 ON kandidat.id_wakil = a2.id");
 
 $isVote = count(showData($conn, "SELECT * FROM hasil_voting WHERE hasil_voting.id_akun =$id_akun;"));
+$durasi = showData($conn, "SELECT * FROM durasi_voting");
 
 if (isset($_POST['btn-vote'])) {
     vote($conn, $_POST);
@@ -42,6 +43,35 @@ if (isset($_POST['btn-vote'])) {
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">Durasi Voting</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="tgl_mulai">Tanggal Mulai</label>
+                                <input type="date" class="form-control" id="tgl_mulai" value="<?= isset($durasi[0]) ? $durasi[0]['tanggal_mulai'] : '' ?>" readonly disabled>
+                            </div>
+                            <div class="col-4">
+                                <label for="jam_mulai">Jam Mulai</label>
+                                <input type="time" class="form-control" id="jam_mulai" value="<?= isset($durasi[0]) ? $durasi[0]['jam_mulai'] : '' ?>" readonly disabled>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="tgl_berakhir">Tanggal Berakhir</label>
+                                <input type="date" class="form-control" id="tgl_berakhir" value="<?= isset($durasi[0]) ? $durasi[0]['tanggal_berakhir'] : '' ?>" readonly disabled>
+                            </div>
+                            <div class="col-4">
+                                <label for="jam_berakhir">Jam Berakhir</label>
+                                <input type="time" class="form-control" id="jam_berakhir" value="<?= isset($durasi[0]) ? $durasi[0]['jam_berakhir'] : '' ?>" readonly disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
                     <div class="card-body">
                         <section class="content">
                             <div class="container-fluid">
@@ -53,7 +83,7 @@ if (isset($_POST['btn-vote'])) {
                                             <div class="card card-primary">
                                                 <div class="card-body box-profile">
                                                     <div class="text-center">
-                                                        <img class=" img-fluid" src="../admin/images/<?=$dk['foto']?>">
+                                                        <img class=" img-fluid" src="../admin/images/<?= $dk['foto'] ?>">
                                                     </div>
                                                     <br>
                                                     <h3 class="profile-username text-center">

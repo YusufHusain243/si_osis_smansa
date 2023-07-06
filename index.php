@@ -20,7 +20,11 @@ $visi_misi = showData($conn, "SELECT * FROM visi_misi");
 $struktur_organisasi = showData($conn, "SELECT struktur_inti.*, akun.nama FROM struktur_inti INNER JOIN akun ON struktur_inti.id_akun = akun.id");
 $galeri = showData($conn, "SELECT * FROM galeri");
 $kontak = showData($conn, "SELECT * FROM kontak");
+$durasi = showData($conn, "SELECT * FROM durasi_voting");
 
+$date = date_create($durasi[0]['tanggal_berakhir']);
+$date = date_format($date,"M d, Y");
+$countdown = $date . " ".$durasi[0]['jam_berakhir'];
 ?>
 
 <!DOCTYPE html>
@@ -71,6 +75,8 @@ $kontak = showData($conn, "SELECT * FROM kontak");
 
   <main id="main">
 
+    <?php include 'components_pengunjung/info_voting.php'; ?>
+
     <?php include 'components_pengunjung/about.php'; ?>
 
     <?php include 'components_pengunjung/visi_misi.php'; ?>
@@ -86,6 +92,37 @@ $kontak = showData($conn, "SELECT * FROM kontak");
   <?php include 'components_pengunjung/footer.php'; ?>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script>
+    // Set the date we're counting down to
+    var countDownDate = new Date(<?php echo json_encode($countdown); ?>).getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      // Get today's date and time
+      var now = new Date().getTime();
+
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the result in the element with id="demo"
+      document.getElementById("demo").innerHTML = days + "d " + hours + "h " +
+        minutes + "m " + seconds + "s ";
+
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
 
   <!-- Vendor JS Files -->
   <script src="assets-pengunjung/vendor/purecounter/purecounter_vanilla.js"></script>

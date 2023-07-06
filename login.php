@@ -1,6 +1,11 @@
 <?php
+
 error_reporting(0);
 session_start();
+include 'connect.php';
+
+$loginSiswa = (isset($_GET['page']) && $_GET['page'] == 'loginSiswa') ? true : false;
+
 if (isset($_SESSION['loginRole'])) {
     switch ($_SESSION['loginRole']) {
         case 'Admin':
@@ -17,7 +22,6 @@ if (isset($_SESSION['loginRole'])) {
             break;
     }
 }
-include 'connect.php';
 
 function showData($conn, $query)
 {
@@ -136,15 +140,24 @@ if (isset($_POST['login'])) {
                 <!-- <h3 class="text-center"><b>OSIS SMAN 1 Pandih Batu</b></h3> -->
                 <p class="login-box-msg">Log in to start your session</p>
                 <form action="" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="role">Login Sebagai</label>
-                        <select class="form-control" name="role" id="role">
-                            <option value="Siswa">Siswa</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Pengurus">Pengurus OSIS</option>
-                            <option value="Pembina">Guru Pembina OSIS</option>
-                        </select>
-                    </div>
+                    <?php
+                    if ($loginSiswa == false) {
+                    ?>
+                        <div class="form-group">
+                            <label for="role">Login Sebagai</label>
+                            <select class="form-control" name="role" id="role">
+                                <option value="Admin">Admin</option>
+                                <option value="Pengurus">Pengurus OSIS</option>
+                                <option value="Pembina">Guru Pembina OSIS</option>
+                            </select>
+                        </div>
+                    <?php
+                    } else {
+                    ?>
+                        <input type="hidden" name="role" value="Siswa">
+                    <?php
+                    }
+                    ?>
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Username">

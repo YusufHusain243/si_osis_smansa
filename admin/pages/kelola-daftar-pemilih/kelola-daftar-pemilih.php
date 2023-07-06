@@ -70,7 +70,7 @@ if (isset($_POST['btn-reset'])) {
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="form-group">
-                                                        <label for="file">File Input (Excel)</label>
+                                                        <label for="file">File Input Excel (.XLS/.XLSX) <a href="file/format file.xls">Format File</a></label>
                                                         <div class="input-group">
                                                             <div class="custom-file">
                                                                 <input type="file" class="custom-file-input" id="file" name="file">
