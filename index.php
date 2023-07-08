@@ -120,6 +120,7 @@ $countdown = $date . " ".$durasi[0]['jam_berakhir'];
       if (distance < 0) {
         clearInterval(x);
         document.getElementById("demo").innerHTML = "EXPIRED";
+        document.getElementById("voting").style.display = "none";
       }
     }, 1000);
   </script>
