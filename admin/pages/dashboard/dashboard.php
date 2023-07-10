@@ -43,12 +43,12 @@ $jumlahEkskul = showData($conn, "SELECT COUNT(id) AS JumlahEkskul FROM ekskul");
                 <div class="small-box bg-info">
                     <div class="inner">
                         <h3><?= $jumlahSiswa[0]['JumlahSiswa']; ?></h3>
-                        <p>Kelola User Siswa</p>
+                        <p>Kelola User Daftar Pemilih</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="index.php?p=kelola-siswa&m=kelola-siswa" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="index.php?p=kelola-daftar-pemilih&m=kelola-daftar-pemilih" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
