@@ -130,7 +130,7 @@ if (isset($_POST['btn-edit'])) {
                                             <img src="images/<?= $d['foto'] ?>" alt="foto" width="100px">
                                         </td>
                                         <td>
-                                            <a href="dokumen/<?= $d['file']; ?>" target="_blank">Lihat File</a>
+                                            <a href="document/<?= $d['file']; ?>" target="_blank">Lihat File</a>
                                         </td>
                                         <td>
                                             <div class="text-center">

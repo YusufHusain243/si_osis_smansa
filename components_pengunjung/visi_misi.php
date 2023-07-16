@@ -7,7 +7,7 @@
 
         <div class="row" data-aos="fade-up">
             <div class="col-md-5">
-                <img src="assets-pengunjung/img/features-1.svg" class="img-fluid" alt="">
+                <img src="assets-pengunjung/img/visi.jpeg" class="img-fluid" alt="">
             </div>
             <div class="col-md-7 pt-4">
                 <h3>Visi</h3>
@@ -19,7 +19,7 @@
 
         <div class="row" data-aos="fade-up">
             <div class="col-md-5 order-1 order-md-2">
-                <img src="assets-pengunjung/img/features-4.svg" class="img-fluid" alt="">
+                <img src="assets-pengunjung/img/misi.jpeg" class="img-fluid" alt="">
             </div>
             <div class="col-md-7 pt-5 order-2 order-md-1">
                 <h3>Misi</h3>
