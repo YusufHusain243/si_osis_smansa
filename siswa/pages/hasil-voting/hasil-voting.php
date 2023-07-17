@@ -2,10 +2,10 @@
 
 include 'function.php';
 
-$hasilVoting = showData($conn, "SELECT COUNT(hasil_voting.id) AS hasilVoting FROM hasil_voting;");
+$totalVoting = showData($conn, "SELECT COUNT(hasil_voting.id) AS totalVoting FROM hasil_voting;");
 $totalSuara = showData($conn, "SELECT COUNT(akun.id) AS totalSuara FROM akun WHERE role = 'Siswa';");
 
-$totalPerolehanSuara = ($hasilVoting[0]['hasilVoting'] / $totalSuara[0]['totalSuara']) * 100;
+$totalPerolehanSuara = ($totalVoting[0]['totalVoting'] / ($totalSuara[0]['totalSuara'] > 0 ? $totalSuara[0]['totalSuara'] : 1)) * 100;
 
 $hasilVoting = showData($conn, "SELECT
                                     kandidat.no_urut,
@@ -39,7 +39,7 @@ foreach ($hasilVoting as $hp) {
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="indexAdmin.php?p=dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="index.php?p=dashboard&m=dashboard">Dashboard</a></li>
                     <li class="breadcrumb-item active">Hasil Voting</li>
                 </ol>
             </div>
@@ -51,13 +51,30 @@ foreach ($hasilVoting as $hp) {
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <div class="d-flex">
-                    <p class="ml-auto d-flex flex-column text-right">
-                        <span class="text-success">
-                            <?= $totalPerolehanSuara ?>% / 100%
-                        </span>
-                        <span class="text-muted">Total Perolehan Suara</span>
-                    </p>
+                <div class="row ">
+                    <div class="col text-center">
+                    <p>DATA PEROLEHAN HASIL VOTING</p>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-6">
+                        <ul>
+                            <li>Jumlah Pemilih : <?= $totalSuara[0]['totalSuara'] ?></li>
+                            <li>Jumlah Yang Sudah Memilih : <?= $totalVoting[0]['totalVoting'] ?></li>
+                            <li>Jumlah Yang Belum Memilih : <?= $totalSuara[0]['totalSuara'] - $totalVoting[0]['totalVoting'] ?></li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <p class="ml-auto d-flex flex-column text-right">
+                            <span class="text-success">
+                                <?= $totalPerolehanSuara ?>% / 100%
+                            </span>
+                            <span class="text-muted">Total Perolehan Suara</span>
+                        </p>
+                    </div>
                 </div>
 
                 <div class="position-relative mb-4">
