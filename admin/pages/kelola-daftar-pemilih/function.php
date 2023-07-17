@@ -17,8 +17,12 @@ function tambahData($conn, $data)
     $username = mysqli_real_escape_string($conn, htmlspecialchars($data['nisn']));
     $password = mysqli_real_escape_string($conn, htmlspecialchars(md5($data['password'])));
     $nama = htmlspecialchars($data['nama']);
+    $tempat_lahir = htmlspecialchars($data['tempat_lahir']);
+    $tgl_lahir = htmlspecialchars($data['tgl_lahir']);
+    $jenis_kelamin = htmlspecialchars($data['jenis_kelamin']);
+    $alamat = htmlspecialchars($data['alamat']);
 
-    $query = "INSERT INTO akun VALUES ('', '$username', '$password', 'Siswa', '$nama')";
+    $query = "INSERT INTO akun VALUES ('', '$username', '$password', 'Siswa', '$nama', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$alamat')";
     if (mysqli_query($conn, $query)) {
         echo '<script>alert("Data Berhasil Ditambahkan"); location.href = "index.php?p=kelola-daftar-pemilih&m=kelola-daftar-pemilih";</script>';
     } else {
@@ -57,13 +61,21 @@ function editData($conn, $data)
     $username = mysqli_real_escape_string($conn, htmlspecialchars($data['nisn']));
     $password = mysqli_real_escape_string($conn, htmlspecialchars(md5($data['password'])));
     $nama = htmlspecialchars($data['nama']);
+    $tempat_lahir = htmlspecialchars($data['tempat_lahir']);
+    $tgl_lahir = htmlspecialchars($data['tgl_lahir']);
+    $jenis_kelamin = htmlspecialchars($data['jenis_kelamin']);
+    $alamat = htmlspecialchars($data['alamat']);
 
     $query = "UPDATE 
                 akun 
             SET 
                 nama = '$nama', 
                 username = '$username',
-                password = '$password'
+                password = '$password',
+                tempat_lahir = '$tempat_lahir',
+                tgl_lahir = '$tgl_lahir',
+                jenis_kelamin = '$jenis_kelamin',
+                alamat = '$alamat',
             WHERE 
                 id = '$id'";
 
@@ -101,23 +113,33 @@ function importData($conn, $data)
         $spreadsheet = $reader->load($file_data);
         $sheetData = $spreadsheet->getActiveSheet()->toArray();
 
+        print_r(count($sheetData));
+        die;
+        
         for ($i = 1; $i < count($sheetData); $i++) {
-            $nama = $sheetData[$i]['10'];
-            $username = $sheetData[$i]['8'];
-            $password = md5($sheetData[$i]['8']);
+            $nama = $sheetData[$i]['2'];
+            $username = $sheetData[$i]['1'];
+            $password = md5($sheetData[$i]['1']);
+            $tempat_lahir = $sheetData[$i]['3'];
+            $tgl_lahir = $sheetData[$i]['4'];
+            $jenis_kelamin = $sheetData[$i]['5'];
+            $alamat = $sheetData[$i]['7'];
             $role = 'Siswa';
 
-            $query = "INSERT INTO akun VALUES ('', '$username', '$password', '$role', '$nama')";
+            $query = "INSERT INTO akun VALUES ('', '$username', '$password', '$role', '$nama', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$alamat')";
 
-            if (mysqli_query($conn, $query)) {
-                echo '<script>alert("Data Berhasil Diimport"); location.href = "index.php?p=kelola-daftar-pemilih&m=kelola-daftar-pemilih";</script>';
-            } else {
-                echo '<script>alert("Data Gagal Diimport"); location.href = "index.php?p=kelola-daftar-pemilih&m=kelola-daftar-pemilih";</script>';
-            }
+            // if (mysqli_query($conn, $query)) {
+            //     echo '<script>alert("Data Berhasil Diimport"); location.href = "index.php?p=kelola-daftar-pemilih&m=kelola-daftar-pemilih";</script>';
+            // } else {
+            //     echo '<script>alert("Data Gagal Diimport"); location.href = "index.php?p=kelola-daftar-pemilih&m=kelola-daftar-pemilih";</script>';
+            // }
+            mysqli_query($conn, $query);
         }
     }
 
     if ($err) {
         echo '<script>alert("Data Gagal Diimport"); location.href = "index.php?p=kelola-daftar-pemilih&m=kelola-daftar-pemilih";</script>';
+    } else {
+        echo '<script>alert("Data Berhasil Diimport"); location.href = "index.php?p=kelola-daftar-pemilih&m=kelola-daftar-pemilih";</script>';
     }
 }

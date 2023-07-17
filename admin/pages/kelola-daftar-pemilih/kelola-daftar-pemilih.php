@@ -110,7 +110,7 @@ if (isset($_POST['btn-reset'])) {
 
                         <!-- Modal Tambah Data Manual -->
                         <div class="modal fade" id="tambah">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <form action="" method="post">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -120,17 +120,43 @@ if (isset($_POST['btn-reset'])) {
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="nama">Nama</label>
-                                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="nisn">NISN</label>
-                                                <input type="text" class="form-control" id="nisn" name="nisn" placeholder="Masukkan NISN">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="password">Password</label>
-                                                <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="nama">Nama</label>
+                                                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="nisn">NISN (Username)</label>
+                                                        <input type="text" class="form-control" id="nisn" name="nisn" placeholder="Masukkan NISN">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="password">Password</label>
+                                                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="tempat_lahir">Tempat Lahir</label>
+                                                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Masukkan tempat lahir">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="tgl_lahir">Tanggal Lahir</label>
+                                                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                                                        <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
+                                                            <option selected>Silahkan Pilih</option>
+                                                            <option value="L">Laki-laki</option>
+                                                            <option value="P">Perempuan</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="alamat">Alamat</label>
+                                                        <textarea class="form-control" name="alamat" id="alamat" cols="30" rows="5"></textarea>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -149,8 +175,10 @@ if (isset($_POST['btn-reset'])) {
                                     <tr class="text-center">
                                         <th>No.</th>
                                         <th>Nama</th>
-                                        <th>Username (NISN)</th>
-                                        <th>Role</th>
+                                        <th>NISN (Username)</th>
+                                        <th>TTL</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>Alamat</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -163,7 +191,9 @@ if (isset($_POST['btn-reset'])) {
                                             <td class="text-center"><?= $no; ?></td>
                                             <td><?= $d['nama'] ?></td>
                                             <td><?= $d['username'] ?></td>
-                                            <td><?= $d['role'] ?></td>
+                                            <td><?= $d['tempat_lahir'] ?>, <?= $d['tgl_lahir'] ?></td>
+                                            <td><?= $d['jenis_kelamin'] == 'L' ? 'Laki-laki' : 'Perempuan' ?></td>
+                                            <td><?= $d['alamat'] ?></td>
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-success btn-sm" data-rel="tooltip" data-placement="top" title="Edit" data-toggle="modal" data-target="#edit-<?= $d['id'] ?>">
@@ -178,7 +208,7 @@ if (isset($_POST['btn-reset'])) {
                                             </td>
 
                                             <div class="modal fade" id="edit-<?= $d['id'] ?>">
-                                                <div class="modal-dialog">
+                                                <div class="modal-dialog modal-lg">
                                                     <form action="" method="post">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -188,18 +218,45 @@ if (isset($_POST['btn-reset'])) {
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <div class="form-group">
-                                                                    <label for="nama">Nama</label>
-                                                                    <input type="text" value="<?= $d['nama'] ?>" class="form-control" id="nama" name="nama" placeholder="Masukkan nama">
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="form-group">
+                                                                            <label for="nama">Nama</label>
+                                                                            <input type="text" value="<?= $d['nama'] ?>" class="form-control" id="nama" name="nama">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="nisn">NISN (Username)</label>
+                                                                            <input type="text" value="<?= $d['username'] ?>" class="form-control" id="nisn" name="nisn">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="password">New Password</label>
+                                                                            <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="tempat_lahir">Tempat Lahir</label>
+                                                                            <input type="text" value="<?= $d['tempat_lahir'] ?>" class="form-control" id="tempat_lahir" name="tempat_lahir">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="form-group">
+                                                                            <label for="tgl_lahir">Tanggal Lahir</label>
+                                                                            <input type="date" value="<?= $d['tgl_lahir'] ?>" class="form-control" id="tgl_lahir" name="tgl_lahir">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="jenis_kelamin">Jenis Kelamin</label>
+                                                                            <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
+                                                                                <option selected>Silahkan Pilih</option>
+                                                                                <option value="L">Laki-laki</option>
+                                                                                <option value="P">Perempuan</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="alamat">Alamat</label>
+                                                                            <textarea class="form-control" name="alamat" id="alamat" cols="30" rows="5"><?= $d['alamat'] ?></textarea>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label for="nisn">NISN</label>
-                                                                    <input type="text" value="<?= $d['username'] ?>" class="form-control" id="nisn" name="nisn" placeholder="Masukkan NISN">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="password">New Password</label>
-                                                                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
-                                                                </div>
+
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="submit" name="btn-edit" value="<?= $d['id'] ?>" class="btn btn-primary">Edit Data</button>
