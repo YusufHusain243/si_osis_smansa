@@ -3,7 +3,7 @@ session_start();
 date_default_timezone_set("Asia/Jakarta");
 if (!isset($_SESSION['loginRole'])) {
     header("Location: ../login.php");
-}else{
+} else {
     if ($_SESSION['loginRole'] != 'Admin') {
         header("Location: ../login.php");
     }

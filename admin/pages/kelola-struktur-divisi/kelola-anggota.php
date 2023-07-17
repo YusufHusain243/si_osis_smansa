@@ -4,8 +4,8 @@ include 'function.php';
 $id_divisi = $_GET['id'];
 $nama_divisi = $_GET['nama_divisi'];
 
-$data = showData($conn, "SELECT anggota_divisi.*, akun.nama, akun.id as id_nama FROM anggota_divisi INNER JOIN akun ON anggota_divisi.id_akun = akun.id WHERE id_divisi = $id_divisi");
-$nama = showData($conn, "SELECT * FROM akun WHERE role = 'Siswa'");
+$data = showData($conn, "SELECT anggota_divisi.*, akun.nama, akun.username, akun.id as id_nama FROM anggota_divisi INNER JOIN akun ON anggota_divisi.id_akun = akun.id WHERE id_divisi = $id_divisi");
+$dataSiswa = showData($conn, "SELECT * FROM akun WHERE role = 'Siswa'");
 
 if (isset($_POST['btn-tambah'])) {
     tambahDataAnggota($conn, $_POST, $id_divisi, $nama_divisi);
@@ -66,13 +66,13 @@ if (isset($_POST['btn-edit'])) {
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="nama">Nama</label>
+                                                <label for="nama">NISN</label>
                                                 <select class="form-control" name="nama" id="nama">
                                                     <option selected>Silahkan Pilih</option>
                                                     <?php
-                                                    foreach ($nama as $n) {
+                                                    foreach ($dataSiswa as $ds) {
                                                     ?>
-                                                        <option value="<?= $n['id'] ?>"><?= $n['nama'] ?></option>
+                                                        <option value="<?= $ds['id'] ?>"><?= $ds['username'] ?></option>
                                                     <?php
                                                     }
                                                     ?>
@@ -109,6 +109,7 @@ if (isset($_POST['btn-edit'])) {
                                 <tr class="text-center">
                                     <th>No.</th>
                                     <th>Nama</th>
+                                    <th>NISN</th>
                                     <th>Jabatan</th>
                                     <th>Foto</th>
                                     <th>Aksi</th>
@@ -122,6 +123,7 @@ if (isset($_POST['btn-edit'])) {
                                     <tr>
                                         <td class="text-center"><?= $no; ?></td>
                                         <td><?= $d['nama'] ?></td>
+                                        <td><?= $d['username'] ?></td>
                                         <td><?= $d['jabatan'] ?></td>
                                         <td class="text-center">
                                             <img src="images/<?= $d['foto'] ?>" alt="foto" width="100px">
@@ -152,12 +154,12 @@ if (isset($_POST['btn-edit'])) {
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="form-group">
-                                                                <label for="nama">Nama</label>
+                                                                <label for="nama">NISN</label>
                                                                 <select class="form-control" name="nama" id="nama">
                                                                     <?php
-                                                                    foreach ($nama as $n) {
+                                                                    foreach ($dataSiswa as $ds) {
                                                                     ?>
-                                                                        <option value="<?= $n['id'] ?>" <?= $n['id'] == $d['id_nama'] ? 'selected' : '' ?>><?= $n['nama'] ?></option>
+                                                                        <option value="<?= $ds['id'] ?>" <?= $ds['id'] == $d['id_nama'] ? 'selected' : '' ?>><?= $ds['username'] ?></option>
                                                                     <?php
                                                                     }
                                                                     ?>

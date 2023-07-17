@@ -1,8 +1,8 @@
 <?php
 include 'function.php';
 
-$nama = showData($conn, "SELECT * FROM akun WHERE role = 'Siswa'");
-$data = showData($conn, "SELECT struktur_inti.*, akun.nama FROM struktur_inti INNER JOIN akun ON struktur_inti.id_akun = akun.id;");
+$dataSiswa = showData($conn, "SELECT * FROM akun WHERE role = 'Siswa'");
+$data = showData($conn, "SELECT struktur_inti.*, akun.nama, akun.username FROM struktur_inti INNER JOIN akun ON struktur_inti.id_akun = akun.id;");
 
 if (isset($_POST['btn-tambah'])) {
     tambahData($conn, $_POST);
@@ -62,13 +62,13 @@ if (isset($_POST['btn-edit'])) {
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="nama">Nama</label>
+                                                <label for="nama">NISN</label>
                                                 <select class="form-control" name="nama" id="nama">
                                                     <option selected>Silahkan Pilih</option>
                                                     <?php
-                                                    foreach ($nama as $n) {
+                                                    foreach ($dataSiswa as $ds) {
                                                     ?>
-                                                        <option value="<?= $n['id'] ?>"><?= $n['nama'] ?></option>
+                                                        <option value="<?= $ds['id'] ?>"><?= $ds['username'] ?></option>
                                                     <?php
                                                     }
                                                     ?>
@@ -105,6 +105,7 @@ if (isset($_POST['btn-edit'])) {
                                 <tr class="text-center">
                                     <th>No.</th>
                                     <th>Nama</th>
+                                    <th>NISN</th>
                                     <th>Jabatan</th>
                                     <th>Foto</th>
                                     <th>Aksi</th>
@@ -118,6 +119,7 @@ if (isset($_POST['btn-edit'])) {
                                     <tr>
                                         <td class="text-center"><?= $no; ?></td>
                                         <td><?= $d['nama'] ?></td>
+                                        <td><?= $d['username'] ?></td>
                                         <td><?= $d['jabatan'] ?></td>
                                         <td class="text-center">
                                             <img src="images/<?= $d['foto'] ?>" alt="foto" width="100px">
@@ -152,9 +154,9 @@ if (isset($_POST['btn-edit'])) {
                                                                     <label for="nama">Nama</label>
                                                                     <select class="form-control" name="nama" id="nama">
                                                                         <?php
-                                                                        foreach ($nama as $n) {
+                                                                        foreach ($dataSiswa as $ds) {
                                                                         ?>
-                                                                            <option value="<?= $n['id'] ?>" <?= $n['id'] == $d['id'] ? 'selected' : '' ?>><?= $n['nama'] ?></option>
+                                                                            <option value="<?= $ds['id'] ?>" <?= $ds['id'] == $d['id'] ? 'selected' : '' ?>><?= $ds['username'] ?></option>
                                                                         <?php
                                                                         }
                                                                         ?>
@@ -173,7 +175,7 @@ if (isset($_POST['btn-edit'])) {
                                                                         </div>
                                                                     </div>
                                                                     <br>
-                                                                    <img id="preview-edit-<?= $d['id'] ?>" src="<?= isset($d['foto']) ? 'images/'.$d['foto'] : '#' ?>" class="img-fluid" width="100" />
+                                                                    <img id="preview-edit-<?= $d['id'] ?>" src="<?= isset($d['foto']) ? 'images/' . $d['foto'] : '#' ?>" class="img-fluid" width="100" />
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
