@@ -113,27 +113,23 @@ function importData($conn, $data)
         $spreadsheet = $reader->load($file_data);
         $sheetData = $spreadsheet->getActiveSheet()->toArray();
 
-        print_r(count($sheetData));
-        die;
-        
         for ($i = 1; $i < count($sheetData); $i++) {
-            $nama = $sheetData[$i]['2'];
-            $username = $sheetData[$i]['1'];
-            $password = md5($sheetData[$i]['1']);
-            $tempat_lahir = $sheetData[$i]['3'];
-            $tgl_lahir = $sheetData[$i]['4'];
+            $nama = str_replace(array("'", '"'), "", $sheetData[$i]['2']);
+            $username = str_replace(array("'", '"'), "", $sheetData[$i]['1']);
+            $password = md5(str_replace(array("'", '"'), "", $sheetData[$i]['1']));
+            $tempat_lahir = str_replace(array("'", '"'), "", $sheetData[$i]['3']);
+            $tgl_lahir = str_replace(array("'", '"'), "", $sheetData[$i]['4']);
             $jenis_kelamin = $sheetData[$i]['5'];
-            $alamat = $sheetData[$i]['7'];
+            $alamat = str_replace(array("'", '"'), "", $sheetData[$i]['7']);
             $role = 'Siswa';
 
             $query = "INSERT INTO akun VALUES ('', '$username', '$password', '$role', '$nama', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$alamat')";
 
-            // if (mysqli_query($conn, $query)) {
-            //     echo '<script>alert("Data Berhasil Diimport"); location.href = "index.php?p=kelola-daftar-pemilih&m=kelola-daftar-pemilih";</script>';
-            // } else {
-            //     echo '<script>alert("Data Gagal Diimport"); location.href = "index.php?p=kelola-daftar-pemilih&m=kelola-daftar-pemilih";</script>';
-            // }
-            mysqli_query($conn, $query);
+            if (mysqli_query($conn, $query)) {
+                echo '<script>alert("Data Berhasil Diimport"); location.href = "index.php?p=kelola-daftar-pemilih&m=kelola-daftar-pemilih";</script>';
+            } else {
+                echo '<script>alert("Data Gagal Diimport"); location.href = "index.php?p=kelola-daftar-pemilih&m=kelola-daftar-pemilih";</script>';
+            }
         }
     }
 
